@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+    <name>waclient</name>
+    <code>waclient</code>
+    <version>1.0</version>
+    <author>support@waclient.com</author>
+    <link>https://www.waclient.com</link>
+    <file path="admin/controller/common/column_left.php"> 
+		<operation> 
+		 <search><![CDATA[$design = array();]]></search> 
+		 <add position="before"><![CDATA[ 
+		 $waclient = array(); 
+		 if ($this->user->hasPermission('access', 'extension/module/waclient')) { 
+		 $waclient[] = array( 
+		 'name' => 'General Setting', 
+		 'href' => $this->url->link('extension/module/waclient', 'user_token=' . $this->session->data['user_token'], true), 
+		 'children' => array() 
+		 ); 
+		 }
+		 if ($this->user->hasPermission('access', 'extension/module/waclient')) { 
+		 $waclient[] = array( 
+		 'name' => 'Sent Messages', 
+		 'href' => $this->url->link('extension/module/waclient/history', 'user_token=' . $this->session->data['user_token'], true), 
+		 'children' => array() 
+		 ); 
+		 }
+		 if ($this->user->hasPermission('access', 'extension/module/waclient')) { 
+		 $waclient[] = array( 
+		 'name' => 'Send WhatsApp', 
+		 'href' => $this->url->link('extension/module/waclient/contact', 'user_token=' . $this->session->data['user_token'], true), 
+		 'children' => array() 
+		 ); 
+		 }
+		 if ($waclient) { 
+		 $data['menus'][] = array( 
+		 'id' => 'menu-waclient', 
+		 'icon' => 'fa-whatsapp', 
+		 'name' => 'WA Client', 
+		 'href' => '', 
+		 'children' => $waclient 
+		 ); 
+		 } 
+		 
+		 ]]></add> 
+		 
+		</operation> 
+	</file> 
+</modification>
